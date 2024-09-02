@@ -189,7 +189,7 @@ class AesStringEncryptor// get the key, which is encrypted by RSA cipher.
 @Throws(Exception::class) constructor(preferences: SharedPreferences, keyWrapper: KeyWrapper) :
     StringEncryptor {
 
-    private val ivSize = 16
+    private val ivSize = 12
     private val keySize = 16
     private val KEY_ALGORITHM = "AES"
     private val WRAPPED_AES_KEY_ITEM = "W0n5hlJtrAH0K8mIreDGxtG"
