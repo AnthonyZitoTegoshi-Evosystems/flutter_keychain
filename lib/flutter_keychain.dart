@@ -15,7 +15,7 @@ class FlutterKeychain {
       await _channel.invokeMethod('get', {'key': key});
 
   // decrypt - decrypt the given json string value
-  static Future<String?> get({required String value}) async =>
+  static Future<String?> decrypt({required String value}) async =>
       await _channel.invokeMethod('decrypt', {'value': value});
 
   // remove - remove entry for a given key
