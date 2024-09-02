@@ -40,7 +40,7 @@ class RsaKeyStoreKeyWrapper(context: Context) : KeyWrapper {
     private val KEYSTORE_PROVIDER_ANDROID = "AndroidKeyStore"
 
     init {
-        this.keyAlias = context.packageName + ".FlutterKeychain"
+        this.keyAlias = context.packageName + ".xamarinessentials"
         this.context = context
         createRSAKeysIfNeeded()
     }
@@ -338,6 +338,10 @@ class FlutterKeychainPlugin : FlutterPlugin, MethodCallHandler {
                 "get" -> {
                     val encryptedValue: String? = preferences.getString(call.key(), null)
                     val value = encryptor.decrypt(encryptedValue)
+                    result.success(value)
+                }
+                "decrypt" -> {
+                    val value = encryptor.decrypt(call.value())
                     result.success(value)
                 }
                 "put" -> {
