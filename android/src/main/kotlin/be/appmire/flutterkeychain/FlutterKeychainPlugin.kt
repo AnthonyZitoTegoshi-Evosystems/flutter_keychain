@@ -211,7 +211,7 @@ class AesStringEncryptor// get the key, which is encrypted by RSA cipher.
                 secretKey = createKey(preferences, keyWrapper)
             }
         }
-        cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
+        cipher = Cipher.getInstance("AES/GCM/NoPadding")
     }
 
     fun createKey(preferences: SharedPreferences, keyWrapper: KeyWrapper): Key {
