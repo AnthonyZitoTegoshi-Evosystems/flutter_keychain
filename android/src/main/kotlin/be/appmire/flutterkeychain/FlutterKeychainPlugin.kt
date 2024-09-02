@@ -21,6 +21,7 @@ import java.security.spec.AlgorithmParameterSpec
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import javax.security.auth.x500.X500Principal
 
@@ -265,13 +266,19 @@ class AesStringEncryptor// get the key, which is encrypted by RSA cipher.
 
         val iv = ByteArray(ivSize)
         System.arraycopy(inputBytes, 0, iv, 0, iv.size)
-        val ivParameterSpec = IvParameterSpec(iv)
 
         val payloadSize = inputBytes.size - ivSize
         val payload = ByteArray(payloadSize)
         System.arraycopy(inputBytes, iv.size, payload, 0, payloadSize)
 
-        cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
+        try {
+            val gcmParameterSpec = GCMParameterSpec(128, iv)
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, gcmParameterSpec)
+        } catch (e: Exception) {
+            val ivParameterSpec = IvParameterSpec(iv)
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
+        }
+
         val outputBytes = cipher.doFinal(payload)
         return String(outputBytes, charset)
     }
