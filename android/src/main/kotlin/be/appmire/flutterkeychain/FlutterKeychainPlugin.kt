@@ -31,6 +31,9 @@ interface KeyWrapper {
 
     @Throws(Exception::class)
     fun unwrap(wrappedKey: ByteArray, algorithm: String): Key
+    
+    @Throws(Exception::class)
+    fun getSecretKey(): Key
 }
 
 class RsaKeyStoreKeyWrapper(context: Context) : KeyWrapper {
@@ -82,7 +85,7 @@ class RsaKeyStoreKeyWrapper(context: Context) : KeyWrapper {
     }
 
     @Throws(Exception::class)
-    public fun getSecretKey(): Key {
+    override fun getSecretKey(): Key {
         return getKeyStore().getKey(keyAlias, null)
     }
 
