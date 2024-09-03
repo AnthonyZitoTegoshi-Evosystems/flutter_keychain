@@ -82,7 +82,7 @@ class RsaKeyStoreKeyWrapper(context: Context) : KeyWrapper {
     }
 
     @Throws(Exception::class)
-    fun getSecretKey(): Key {
+    public fun getSecretKey(): Key {
         return getKeyStore().getKey(keyAlias, null)
     }
 
