@@ -46,7 +46,7 @@ class RsaKeyStoreKeyWrapper(context: Context) : KeyWrapper {
     init {
         this.keyAlias = context.packageName + ".xamarinessentials"
         this.context = context
-        createRSAKeysIfNeeded()
+        //createRSAKeysIfNeeded()
     }
 
     @Throws(Exception::class)
