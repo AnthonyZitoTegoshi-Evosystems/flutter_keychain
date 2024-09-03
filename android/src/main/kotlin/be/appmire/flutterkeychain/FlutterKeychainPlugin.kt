@@ -82,6 +82,11 @@ class RsaKeyStoreKeyWrapper(context: Context) : KeyWrapper {
     }
 
     @Throws(Exception::class)
+    fun getSecretKey(): Key {
+        return getKeyStore().getKey(keyAlias, null)
+    }
+
+    @Throws(Exception::class)
     private fun getKeyStore(): KeyStore {
         val ks = KeyStore.getInstance(KEYSTORE_PROVIDER_ANDROID)
         ks.load(null)
@@ -200,18 +205,19 @@ class AesStringEncryptor// get the key, which is encrypted by RSA cipher.
     private val cipher: Cipher
 
     init {
-        val wrappedAesKey = preferences.getString(WRAPPED_AES_KEY_ITEM, null)
+        // val wrappedAesKey = preferences.getString(WRAPPED_AES_KEY_ITEM, null)
 
-        if (wrappedAesKey == null) {
-            secretKey = createKey(preferences, keyWrapper)
-        } else {
-            val encrypted = Base64.decode(wrappedAesKey, Base64.DEFAULT)
-            try {
-                secretKey = keyWrapper.unwrap(encrypted, KEY_ALGORITHM)
-            } catch (ingnored: Exception) {
-                secretKey = createKey(preferences, keyWrapper)
-            }
-        }
+        // if (wrappedAesKey == null) {
+        //     secretKey = createKey(preferences, keyWrapper)
+        // } else {
+        //     val encrypted = Base64.decode(wrappedAesKey, Base64.DEFAULT)
+        //     try {
+        //         secretKey = keyWrapper.unwrap(encrypted, KEY_ALGORITHM)
+        //     } catch (ingnored: Exception) {
+        //         secretKey = createKey(preferences, keyWrapper)
+        //     }
+        // }
+        secretKey = keyWrapper.getSecretKey();
         cipher = Cipher.getInstance("AES/GCM/NoPadding")
     }
 
