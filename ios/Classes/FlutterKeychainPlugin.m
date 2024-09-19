@@ -56,8 +56,6 @@ static NSString *const InvalidParameters = @"Invalid parameter's type";
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     if ([@"get" isEqualToString:call.method]) {
         result([self get:call.key]);
-    } else if ([@"decrypt" isEqualToString:call.method]) {
-        result([self decrypt:call.value]);
     } else if ([@"put" isEqualToString:call.method]) {
         [self put:call.value forKey:call.key];
         result(nil);
