@@ -1,4 +1,4 @@
-#import "FlutterKeychainPlugin.h"
+#import "./include/flutter_keychain/FlutterKeychainPlugin.h"
 
 static NSString *const KEYCHAIN_SERVICE = @"com.contapronta.contapronta.xamarinessentials";
 static NSString *const CHANNEL_NAME = @"plugin.appmire.be/flutter_keychain";

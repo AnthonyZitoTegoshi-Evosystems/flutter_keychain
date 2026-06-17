@@ -20,6 +20,11 @@
 # is commented out by default.
 #.vscode/
 
+# Swift Package Manager related
+.build/
+.swiftpm/
+!.gitkeep
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id

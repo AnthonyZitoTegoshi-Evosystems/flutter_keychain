@@ -12,8 +12,8 @@ Flutter secure storage via Keychain and Keystore
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Jeroen Trappers' => 'jeroen@apple.be' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.source_files = 'flutter_keychain/Sources/flutter_keychain/**/*.{h,m}'
+  s.public_header_files = 'flutter_keychain/Sources/flutter_keychain/include/**/*.h'
   s.dependency 'Flutter'
   
   s.ios.deployment_target = '8.0'
